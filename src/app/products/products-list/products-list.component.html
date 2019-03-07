@@ -1,0 +1,14 @@
+<div fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-form-field>
+    Search
+    <input matInput type="text" [(ngModel)]="searchQuery">
+  </mat-form-field>
+</div>
+
+<div fxLayout="row wrap" fxLayoutAlign="center">
+  <div fxFlex="0 1 33.3%" fxLayout="column" fxLayoutAlign="center center"
+        *ngFor="let product of products | filter: searchQuery: 'name'"
+        [ngClass]="{ 'hidden': product.isHidden }">
+    <boot-product-list-item [product]="product"></boot-product-list-item>
+  </div>
+</div>
