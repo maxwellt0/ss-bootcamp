@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderService } from './shared/services/header.service';
 import { HeaderModule } from './shared/header/header.module';
 import { AppComponent } from './app.component';
+import { AuthService } from './auth/services/auth.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { AppComponent } from './app.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule
   ],
-  providers: [HeaderService],
+  providers: [HeaderService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
