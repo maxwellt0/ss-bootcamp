@@ -11,7 +11,6 @@
   &__button {
     background-color: #f2f4f7;
     cursor: pointer;
-
     border: none;
     user-select: none;
     outline: none;
@@ -21,5 +20,11 @@
     flex-direction: row;
     border-radius: 5px;
     margin: 10px;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, .2);
+    }
   }
 }
