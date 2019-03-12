@@ -1,7 +1,7 @@
 .product-card {
   cursor: pointer;
   margin: 10px 0;
-  transition: all .2s linear;
+  transition: all .2s ease-in-out;
 
   .product-card-img {
     height: 200px;

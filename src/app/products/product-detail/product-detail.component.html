@@ -1,0 +1,30 @@
+<div class="p-1" *ngIf="product" fxLayout="row">
+  <div fxFlex="0 1 50%">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{product.category }} {{ product.name }}</mat-card-title>
+        <mat-card-subtitle>Price: {{ product.price | currency }}</mat-card-subtitle>
+      </mat-card-header>
+      <img [src]="product.imgUrl" [alt]="product.name" mat-card-image>
+      <mat-card-content class="p-1">
+        <p class="product-card-content">
+          {{ product.description }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <div fxFlex="row" fxLayoutAlign="center center" class="p-1">
+          <button mat-raised-button color="warn" (click)="deleteItem($event)">Delete</button>
+          <button mat-raised-button color="accent" (click)="editModeOn()" class="ml-1" [disabled]="isEditMode">Edit</button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div fxFlex="0 1 50%" *ngIf="isEditMode" class="p-1">
+    <boot-product-form [product]="product"></boot-product-form>
+    <div fxlayout="row" fxLayoutAlign="center center" class="p-1">
+      <button mat-raised-button color="accent" (click)="saveProduct()">Save</button>
+      <button mat-raised-button color="" (click)="editModeOff()" class="ml-1">Cancel</button>
+    </div>
+  </div>
+</div>

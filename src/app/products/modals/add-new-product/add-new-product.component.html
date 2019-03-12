@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Add new product</h1>
+<div mat-dialog-content>
+  <boot-product-form [product]="data"></boot-product-form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial color="primary">Add</button>
+</div>

@@ -1,14 +1,25 @@
-<div fxLayout="row wrap" fxLayoutAlign="center center">
-  <mat-form-field>
-    Search
-    <input matInput type="text" [(ngModel)]="searchQuery">
-  </mat-form-field>
-</div>
+<div class="products-wrapper">
+  <div fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-form-field>
+      Search
+      <input matInput type="text" [(ngModel)]="searchQuery">
+    </mat-form-field>
+  </div>
 
-<div fxLayout="row wrap" fxLayoutAlign="center">
-  <div fxFlex="0 1 33.3%" fxLayout="column" fxLayoutAlign="center center"
-        *ngFor="let product of products | filter: searchQuery: 'name'"
-        [ngClass]="{ 'hidden': product.isHidden }">
-    <boot-product-list-item [product]="product"></boot-product-list-item>
+  <div fxLayout="row wrap" fxLayoutGap="20px grid" fxLayoutAlign="flex-start center">
+    <div fxFlex="0 1 33.3%" fxFlexAlign="stretch" class="add-product">
+      <button type="button" fxFlexAlign="stretch" fxLayout="row" fxLayoutAlign="center center" fxFlex
+              class="add-product__button" (click)="openAddNewProduct()">
+        <mat-icon>add_box</mat-icon>
+      </button>
+    </div>
+
+
+    <div fxFlex="0 1 33.3%" fxLayout="column" fxLayoutAlign="center"
+         *ngFor="let product of products | filter: searchQuery: 'name'"
+         [ngClass]="{ 'hidden': product.isHidden }">
+      <boot-product-list-item [product]="product"
+                              [routerLink]="['../', product.category, product.id]"></boot-product-list-item>
+    </div>
   </div>
 </div>

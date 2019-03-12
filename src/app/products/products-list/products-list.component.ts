@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { ProductsService } from '../services/products.service';
 import { ProductItemModel } from '../models/product-item.model';
+import { MatDialog } from '@angular/material';
+import { AddNewProductComponent } from '../modals/add-new-product/add-new-product.component';
+import { filter, switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'boot-products-list',
@@ -13,7 +16,12 @@ export class ProductsListComponent implements OnInit {
   products: ProductItemModel[];
   searchQuery: string;
 
-  constructor(private productsService: ProductsService, private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private productsService: ProductsService,
+    private activatedRoute: ActivatedRoute,
+    private dialog: MatDialog
+  ) {
+  }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((res) => {
@@ -21,6 +29,26 @@ export class ProductsListComponent implements OnInit {
         this.products = res.categoryId === 'all' ? products : products.filter(p => p.category.toLowerCase() === res.categoryId);
       });
     });
+  }
+
+  openAddNewProduct(): void {
+    const dialogRef = this.dialog.open(AddNewProductComponent, {
+      width: '450px',
+      data: {
+        name: null,
+        description: null,
+        price: null,
+        category: null,
+        imgUrl: null,
+        isHidden: null
+      }
+    });
+
+    dialogRef.afterClosed().pipe(
+      filter((product) => !!product),
+      switchMap((product: any) => this.productsService.addProduct(product)),
+      tap((product: any) => this.products.push(product))
+    ).subscribe();
   }
 
 }

@@ -2,15 +2,31 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// export const environment = {
+//   production: false,
+//   firebaseConfig: {
+//     apiKey: 'AIzaSyBYTNwZbVAtkIif5BFuzqYRSQaOoXx0uEo',
+//     authDomain: 'ss-bootcamp-f737a.firebaseapp.com',
+//     databaseURL: 'https://ss-bootcamp-f737a.firebaseio.com',
+//     projectId: 'ss-bootcamp-f737a',
+//     storageBucket: 'ss-bootcamp-f737a.appspot.com',
+//     messagingSenderId: '635847492085'
+//   }
+// };
+
+// This file can be replaced during build by using the `fileReplacements` array.
+// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
+// The list of file replacements can be found in `angular.json`.
+
 export const environment = {
   production: false,
-  firebaseConfig: {
-    apiKey: 'AIzaSyBYTNwZbVAtkIif5BFuzqYRSQaOoXx0uEo',
-    authDomain: 'ss-bootcamp-f737a.firebaseapp.com',
-    databaseURL: 'https://ss-bootcamp-f737a.firebaseio.com',
-    projectId: 'ss-bootcamp-f737a',
-    storageBucket: 'ss-bootcamp-f737a.appspot.com',
-    messagingSenderId: '635847492085'
+  firebaseConfig : {
+    apiKey: 'AIzaSyBYK5IxPvJ2ZiI5V5XFnq3AMjsGqtV7kvI',
+    authDomain: 'ss-bootcamp.firebaseapp.com',
+    databaseURL: 'https://ss-bootcamp.firebaseio.com',
+    projectId: 'ss-bootcamp',
+    storageBucket: 'ss-bootcamp.appspot.com',
+    messagingSenderId: '522967996535'
   }
 };
 

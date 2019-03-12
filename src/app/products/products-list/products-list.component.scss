@@ -1,3 +1,25 @@
 .hidden {
-    display: none !important;
+  display: none !important;
+}
+
+.products-wrapper {
+  padding: 20px;
+}
+
+.add-product {
+
+  &__button {
+    background-color: #f2f4f7;
+    cursor: pointer;
+
+    border: none;
+    user-select: none;
+    outline: none;
+    display: flex;
+    align-self: stretch;
+    width: 100%;
+    flex-direction: row;
+    border-radius: 5px;
+    margin: 10px;
+  }
 }
