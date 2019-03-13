@@ -6,6 +6,7 @@ import { ProductItemModel } from '../models/product-item.model';
 import { MatDialog } from '@angular/material';
 import { AddNewProductComponent } from '../modals/add-new-product/add-new-product.component';
 import { filter, switchMap, tap } from 'rxjs/operators';
+import { AuthService } from '../../auth/services/auth.service';
 
 @Component({
   selector: 'boot-products-list',
@@ -15,11 +16,13 @@ import { filter, switchMap, tap } from 'rxjs/operators';
 export class ProductsListComponent implements OnInit {
   products: ProductItemModel[];
   searchQuery: string;
+  isAdmin: boolean;
 
   constructor(
     private productsService: ProductsService,
     private activatedRoute: ActivatedRoute,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private authService: AuthService
   ) {
   }
 
@@ -29,6 +32,8 @@ export class ProductsListComponent implements OnInit {
         this.products = res.categoryId === 'all' ? products : products.filter(p => p.category.toLowerCase() === res.categoryId);
       });
     });
+
+    this.isAdmin = this.authService.isAdmin();
   }
 
   openAddNewProduct(): void {

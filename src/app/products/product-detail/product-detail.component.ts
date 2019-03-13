@@ -3,6 +3,7 @@ import { ProductsService } from '../services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { ProductItemModel } from '../models/product-item.model';
+import { AuthService } from '../../auth/services/auth.service';
 
 @Component({
   selector: 'boot-product-detail',
@@ -12,14 +13,18 @@ import { ProductItemModel } from '../models/product-item.model';
 export class ProductDetailComponent implements OnInit {
   product: ProductItemModel;
   isEditMode: boolean;
+  isAdmin: boolean;
 
   constructor(private productsService: ProductsService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
     this.loadProduct();
+
+    this.isAdmin = this.authService.isAdmin();
   }
 
   deleteItem(ev): void {
@@ -43,7 +48,7 @@ export class ProductDetailComponent implements OnInit {
     this.isEditMode = false;
   }
 
-  saveProduct () {
+  saveProduct() {
     this.productsService.updateProduct(this.product).then(() => this.isEditMode = false);
   }
 

@@ -7,7 +7,7 @@
   </div>
 
   <div fxLayout="row wrap" fxLayoutGap="20px grid" fxLayoutAlign="flex-start center">
-    <div fxFlex="0 1 33.3%" fxFlexAlign="stretch" class="add-product">
+    <div fxFlex="0 1 33.3%" fxFlexAlign="stretch" class="add-product" *ngIf="isAdmin">
       <button type="button" fxFlexAlign="stretch" fxLayout="row" fxLayoutAlign="center center" fxFlex
               class="add-product__button" (click)="openAddNewProduct()">
         <mat-icon>add_box</mat-icon>
@@ -17,7 +17,7 @@
 
     <div fxFlex="0 1 33.3%" fxLayout="column" fxLayoutAlign="center"
          *ngFor="let product of products | filter: searchQuery: 'name'"
-         [ngClass]="{ 'hidden': product.isHidden }">
+         [ngClass]="{ 'hidden': product.isHidden && !isAdmin }">
       <boot-product-list-item [product]="product"
                               [routerLink]="['../', product.category, product.id]"></boot-product-list-item>
     </div>

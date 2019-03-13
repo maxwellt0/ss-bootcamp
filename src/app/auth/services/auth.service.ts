@@ -43,12 +43,22 @@ export class AuthService {
     return this.isLoggedIn$.asObservable();
   }
 
+  getIsLoggedInValue(): boolean {
+    return this.isLoggedIn$.getValue();
+  }
+
+
   logout() {
     sessionStorage.clear();
     this.setIsLoggedIn(false);
   }
 
-  getUser() {
-    return sessionStorage.getItem('user');
+  getUser(): any {
+    const userJson = sessionStorage.getItem('user');
+    return userJson ? JSON.parse(userJson) : null;
+  }
+
+  isAdmin(): boolean {
+    return this.getUser() !== null && this.getUser().role === 'admin';
   }
 }

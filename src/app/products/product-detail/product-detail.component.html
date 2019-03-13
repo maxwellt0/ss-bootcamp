@@ -13,8 +13,10 @@
       </mat-card-content>
       <mat-card-actions>
         <div fxFlex="row" fxLayoutAlign="center center" class="p-1">
-          <button mat-raised-button color="warn" (click)="deleteItem($event)">Delete</button>
-          <button mat-raised-button color="accent" (click)="editModeOn()" class="ml-1" [disabled]="isEditMode">Edit</button>
+          <button mat-raised-button color="warn" (click)="deleteItem($event)" *ngIf="isAdmin">Delete</button>
+          <button mat-raised-button color="accent"
+                  (click)="editModeOn()" class="ml-1" [disabled]="isEditMode" *ngIf="isAdmin">Edit
+          </button>
         </div>
       </mat-card-actions>
     </mat-card>

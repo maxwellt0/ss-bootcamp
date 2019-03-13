@@ -3,6 +3,8 @@ import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { HeaderService } from './shared/services/header.service';
 import { AuthService } from './auth/services/auth.service';
 import { Subscription } from 'rxjs';
+import { SpinnerService } from './core/services/spinner.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +19,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   showSpinner = false;
 
   constructor(private headerService: HeaderService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private spinnerService: SpinnerService) {
 
   }
 
@@ -26,6 +29,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       this.headerItems = data;
     });
     this.authService.initUser();
+
+    this.spinnerService.showSpinner.pipe(
+      tap((res: boolean) => this.showSpinner = res)
+    ).subscribe();
   }
 
   ngAfterViewInit(): void {
